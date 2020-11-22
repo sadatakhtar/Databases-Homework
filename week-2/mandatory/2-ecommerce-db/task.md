@@ -9,6 +9,30 @@ Below you will find a set of tasks for you to complete to set up a databases of 
 To submit this homework write the correct commands for each question here:
 
 ```sql
+select * from customers where country = 'United states';
+
+select * from customers order by name asc;
+
+select * from products where unit_price > 100;
+
+select * from products where product_name like '%socks';
+
+select * from products order by unit_price desc limit 5;
+
+select p.product_name p.unit_price, s.supplier_name from products AS p join suppliers AS s ON s.id=p.supplier_id;
+
+select p.product_name, s.supplier_name from products AS p join suppliers AS s ON s.id=p.supplier_id where s.country = 'United kingdom';
+
+select * from orders where customer_id=1;
+
+select c.name, orders from customers AS c join orders ON c.id=orders.customer_id where c.name = 'Hope Crosby';
+
+select product_name, unit_price, quantity, order_reference from products AS p inner join order_items AS oi ON p.id=oi.product_id inner join orders As o ON o.id=oi.orders_id where order_reference = 'ORD006';
+
+select c.name, o.order_reference, o.order_date, oi.quantity, p.product_name, s.supplier_name from customers AS c inner join orders AS o ON c.id=o.customer_id inner join order_items AS oi ON o.id=oi.product_id inner join products AS p ON p.id=oi.product_id inner join suppliers AS s ON s.id=p.supplier_id;
+
+select c.name, o.order_reference, o.order_date, oi.quantity, p.product_name, s.supplier_name, s.country from customers AS c inner join orders AS o ON c.id=o.customer_id inner join order_items AS oi ON o.id=oi.product_id inner join products AS p ON p.id=oi.product_id inner join suppliers AS s ON s.id=p.supplier_id where s.country = 'China';
+
 
 
 ```
@@ -47,3 +71,4 @@ Once you understand the database that you are going to work with, solve the foll
 10. Retrieve all the products in the order `ORD006`. The result should only contain the columns `product_name`, `unit_price` and `quantity`.
 11. Retrieve all the products with their supplier for all orders of all customers. The result should only contain the columns `name` (from customer), `order_reference` `order_date`, `product_name`, `supplier_name` and `quantity`.
 12. Retrieve the names of all customers who bought a product from a supplier from China.
+
